@@ -5,7 +5,7 @@ int
 main(int argc, char **argv)
 {
   int test = -1;
-#pragma omp parallel shared(test)
+#pragma omp parallel private(test)
   {
     int thread_id = omp_get_thread_num();
     int n_threads = omp_get_num_threads();
