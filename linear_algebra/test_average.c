@@ -9,13 +9,20 @@
 // calculates a cell-centered representation from a node-centered
 // representation by averaging adjacent values
 
-static void
-vector_average(struct vector *x_cc, struct vector *x_nc)
+void
+vector_average(struct vector *cc, struct vector *nc)
 {
-  assert(x_nc->n == x_cc->n + 1);
+  int i;
+  double val1, val2, sum;
+
+  assert(nc->n == cc->n + 1);
+  
 #pragma omp parallel for
-  for (int i = 0; i < x_cc->n; i++) {
-    VEC(x_cc, i) = .5 * (VEC(x_nc, i) + VEC(x_nc, i+1));
+  for (i = 0; i < cc->n; i++) {
+    val1 = VEC(nc, i);
+    val2 = VEC(nc, i+1);
+    sum = .5 * (val1 + val2);
+    VEC(cc, i) = sum;
   }
 }
 
