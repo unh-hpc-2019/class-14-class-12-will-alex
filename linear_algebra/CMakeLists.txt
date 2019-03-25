@@ -44,6 +44,12 @@ add_executable(test_integrate test_integrate.c)
 add_executable(test_openmp test_openmp.c)
 target_link_libraries(test_openmp OpenMP::OpenMP_C)
 
+add_executable(hello_openmp hello_openmp.c)
+target_link_libraries(hello_openmp OpenMP::OpenMP_C)
+
+add_executable(shared_private shared_private.c)
+target_link_libraries(shared_private OpenMP::OpenMP_C)
+
 add_test(test_vector_dot test_vector_dot)
 add_test(test_vector_add test_vector_add)
 add_test(test_matrix_vector_mul test_matrix_vector_mul)
