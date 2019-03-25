@@ -2,6 +2,9 @@
 cmake_minimum_required (VERSION 3.9)
 
 project (LinearAlgebra)
+
+set(CMAKE_C_FLAGS "-std=c99 -O0 ${CMAKE_C_FLAGS}")
+
 enable_testing()
 
 enable_language(Fortran)
