@@ -40,6 +40,7 @@ add_executable(test_average_fortran test_average_fortran.F90)
 target_link_libraries(test_average_fortran OpenMP::OpenMP_Fortran)
 
 add_executable(test_integrate test_integrate.c)
+target_link_libraries(test_integrate OpenMP::OpenMP_C)
 
 add_executable(test_openmp test_openmp.c)
 target_link_libraries(test_openmp OpenMP::OpenMP_C)
