@@ -18,17 +18,12 @@ main(int argc, char **argv)
 
   double tbeg = Wtime();
   double sum = 0.;
-#pragma omp parallel
-  {
-    double local_sum = 0.;
-#pragma omp for
-    for (int i = 0; i < N; i++) {
-      double x0 = i * dx;
-      double x1 = (i + 1) * dx;
-      local_sum += .5 * (f(x0) + f(x1)) * dx;;
-    }
-#pragma omp atomic
-    sum += local_sum;
+#pragma omp parallel for reduction(+:sum) 
+  for (int i = 0; i < N; i++) {
+    double x0 = i * dx;
+    double x1 = (i + 1) * dx;
+    double val = .5 * (f(x0) + f(x1)) * dx;
+    sum += val;
   }
   double tend = Wtime();
   printf("sum = %g, took: %g sec\n", sum, tend - tbeg);
