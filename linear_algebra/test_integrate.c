@@ -23,7 +23,7 @@ main(int argc, char **argv)
     double x0 = i * dx;
     double x1 = (i + 1) * dx;
     double val = .5 * (f(x0) + f(x1)) * dx;
-#pragma omp critical
+#pragma omp atomic
     sum += val;
   }
   double tend = Wtime();
